@@ -79,6 +79,8 @@
          |  @since  0.2.1
          |
          |  @param  int     The respective timestamp as INTEGER.
+         |
+         |  @return int     The msDOS timestamp of the UNIX timestamp code.
          */
         protected function msDOSTime($time){
             $array = getdate((is_int($time) && $time > 0)? $time: time());

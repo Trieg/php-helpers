@@ -14,7 +14,7 @@
 
     class PDO{
         /*
-         |	INSTANCE VARs
+         |    INSTANCE VARs
          */
         private $db;
         private $ops = array(
@@ -25,7 +25,7 @@
         private $prefix;
 
         /*
-         |	DATA VARs
+         |    DATA VARs
          */
         public $lastID;
         public $lastRows;
@@ -50,8 +50,8 @@
             $string  = "mysql:host={$host};dbname={$name};charset=";
             $string .= preg_replace("#[^a-z0-9]#", "", strtolower($charset)).";";
             $options = array(
-                PDO::ATTR_ERRMODE 				=> PDO::ERRMODE_WARNING,
-                PDO::ATTR_DEFAULT_FETCH_MODE 	=> PDO::FETCH_OBJ
+                PDO::ATTR_ERRMODE               => PDO::ERRMODE_WARNING,
+                PDO::ATTR_DEFAULT_FETCH_MODE    => PDO::FETCH_OBJ
             );
 
             try {
@@ -67,13 +67,13 @@
          |  @since  0.1.0
          */
         public function __destruct(){
-			$this->db = null;
-			$this->lastID = null;
-			$this->lastRows = null;
-			$this->lastQuery = null;
-			$this->lastResult = null;
-			$this->lastErrno = null;
-			$this->lastError = null;
+            $this->db = null;
+            $this->lastID = null;
+            $this->lastRows = null;
+            $this->lastQuery = null;
+            $this->lastResult = null;
+            $this->lastErrno = null;
+            $this->lastError = null;
         }
 
         /*
@@ -106,15 +106,15 @@
         /*
          |  PREPARE :: DATA VALUE
          |  @since  0.1.0
-		 |
-		 |	@param	multi	The respective column value.
-		 |					:: Converts bool and null into integer (0 or 1)
-		 |					:: Converts "numerics" into double (float) or integer.
-		 |					:: Converts arrays and object into serialized strings.
-		 |					:: Quotes each string with PDO::quote.
-		 |	@param	array	The prepared statements as ARRAY.
-		 |
-		 |	@return	multi	The "sanitized" data or '' on failure.
+         |
+         |  @param  multi   The respective column value.
+         |                  :: Converts bool and null into integer (0 or 1)
+         |                  :: Converts "numerics" into double (float) or integer.
+         |                  :: Converts arrays and object into serialized strings.
+         |                  :: Quotes each string with PDO::quote.
+         |  @param  array   The prepared statements as ARRAY.
+         |
+         |  @return multi   The "sanitized" data or '' on failure.
          */
         public function data($value, $prepare = array()){
             if(is_bool($value) || is_null($value)){
@@ -143,7 +143,7 @@
          |  PREPARE :: WHERE
          |  @since  0.1.0
          |
-		 |	@param	multi   A "WHERE <...>" formatted STRING or a special-formatted ARRAY.
+         |  @param  multi   A "WHERE <...>" formatted STRING or a special-formatted ARRAY.
          |  @param  array   The key => value paired prepare values.
          |
          |  @return string  A valid WHERE clause or an empty STRING on failure.
@@ -222,7 +222,7 @@
 
             // Check Value
             switch($op){
-                case "IN":          // @noinspect Fallthrough
+                case "IN":          //@fallthrough
                 case "NOT IN":
                     $val = explode(",", $val);
                     foreach($val AS &$v){
@@ -233,7 +233,7 @@
                     }
                     $val = "(".implode(",", $v).")";
                     break;
-                case "BETWEEN":     // @noinspect Fallthrough
+                case "BETWEEN":     //@Fallthrough
                 case "NOT BETWEEN":
                     $val = trim($val);
                     if(preg_match("#^[a-z0-9\-\:\.]+ and [a-z0-9\-\:\.]+$#i", $val)){
@@ -267,11 +267,11 @@
         /*
          |  PREPARE :: ORDER
          |  @since  0.1.0
-		 |
-		 |	@param	multi   A "ORDER BY <column> <dir>" formatted STRING or a "(<column> => <dir>)"
+         |
+         |  @param  multi   A "ORDER BY <column> <dir>" formatted STRING or a "(<column> => <dir>)"
          |                  formatted ARRAY.
-		 |
-		 |	@return	string	The sanitized and correct ORDER BY clause.
+         |
+         |  @return string  The sanitized and correct ORDER BY clause.
          */
         public function order($data){
             if(is_string($data) && stripos(trim($data), "ORDER BY") === 0){
@@ -295,17 +295,17 @@
         /*
          |  PREPARE :: LIMIT / OFFSET
          |  @since  0.1.0
-		 |
-		 |	@param	multi   A single number as limit, a "LIMIT 0-9[ OFFSET 0-9]" formatted STRING
+         |
+         |  @param  multi   A single number as limit, a "LIMIT 0-9[ OFFSET 0-9]" formatted STRING
          |                  or a "(limit[, offset])" formatted ARRAY.
-		 |
-		 |	@return	string	The sanitized and correct LIMIT / OFFSET clause.
+         |
+         |  @return string  The sanitized and correct LIMIT / OFFSET clause.
          */
         public function limit($data){
             if(is_string($data) && preg_match("#^limit [0-9]+(?: offset [0-9]+)?$#i", trim($data))){
                 return trim(strtoupper($data));
-			} else if(is_numeric($data) && (int) $data > 0){
-				return "LIMIT " . ((int) $data);
+            } else if(is_numeric($data) && (int) $data > 0){
+                return "LIMIT " . ((int) $data);
             } else if(!is_array($data)){
                 return "";
             }
@@ -316,7 +316,7 @@
             if(is_numeric($limit) && $limit > 0){
                 $string .= "LIMIT " . ((int) $limit);
             } else {
-                $string .= "LIMIT 18446744073709551615"; // @ https://dev.mysql.com/doc/refman/5.5/en/select.html
+                $string .= "LIMIT 18446744073709551615"; // ref https://dev.mysql.com/doc/refman/5.5/en/select.html
             }
             if(is_numeric($offset) && $offset > 0){
                 $string .= " OFFSET " . ((int) $offset);
@@ -334,41 +334,41 @@
          |  @return multi   The PDOStatement object or FALSE on failure.
          */
         public function query($sql, $prepare = array()){
-			if(empty($prepare)){
-				@$stmt = $this->db->query($sql);
-			} else {
-				$stmt = $this->db->prepare($sql);
-				@$stmt->execute($prepare);
-			}
+            if(empty($prepare)){
+                @$stmt = $this->db->query($sql);
+            } else {
+                $stmt = $this->db->prepare($sql);
+                @$stmt->execute($prepare);
+            }
 
-			if($stmt === false){
-				$this->lastID = 0;
-				$this->lastRows = 0;
-				$this->lastQuery = $sql;
-				$this->lastResult = false;
+            if($stmt === false){
+                $this->lastID = 0;
+                $this->lastRows = 0;
+                $this->lastQuery = $sql;
+                $this->lastResult = false;
 
                 $this->lastErrno = $this->db->errorCode();
                 $this->lastError = $this->db->errorInfo();
-				return false;
-			}
+                return false;
+            }
 
             if($stmt->errorCode() != "00000"){
-				$this->lastID = 0;
-				$this->lastRows = 0;
-				$this->lastQuery = $sql;
-				$this->lastResult = false;
+                $this->lastID = 0;
+                $this->lastRows = 0;
+                $this->lastQuery = $sql;
+                $this->lastResult = false;
 
                 $error = $stmt->errorInfo();
                 $this->lastErrno = (string) array_shift($error) .".". (string) array_shift($error);
                 $this->lastError = array_pop($error);
-				return false;
+                return false;
             }
 
-			$this->lastID = $this->db->lastInsertID();
-			$this->lastRows = $stmt->rowCount();
-			$this->lastQuery = $sql;
-			$this->lastResult = $stmt;
-			return $stmt;
+            $this->lastID = $this->db->lastInsertID();
+            $this->lastRows = $stmt->rowCount();
+            $this->lastQuery = $sql;
+            $this->lastResult = $stmt;
+            return $stmt;
         }
 
         /*
@@ -453,9 +453,9 @@
 
             // Check Where
             $where = "";
-			if(isset($query["where"]) && ($where = $this->where($query["where"], $prepare)) === false){
-				return false;
-			}
+            if(isset($query["where"]) && ($where = $this->where($query["where"], $prepare)) === false){
+                return false;
+            }
 
             // Check Group
             $group = "";
@@ -471,22 +471,22 @@
 
             // Check Order
             $order = "";
-			if(isset($query["order"]) && ($order = $this->order($query["order"])) === false){
-				return false;
-			}
+            if(isset($query["order"]) && ($order = $this->order($query["order"])) === false){
+                return false;
+            }
 
             // Check Limit
             $limit = "";
-			if(isset($query["limit"]) && ($limit = $this->limit($query["limit"])) === false){
-				return false;
-			}
+            if(isset($query["limit"]) && ($limit = $this->limit($query["limit"])) === false){
+                return false;
+            }
 
-			// Create SQL and Return
-			$sql = rtrim("{$dist} {$where} {$group} {$having} {$order} {$limit}").";";
-			$query = $this->query($sql, $prepare);
-			if($query === false || $query->rowCount() === 0){
-				return false;
-			}
+            // Create SQL and Return
+            $sql = rtrim("{$dist} {$where} {$group} {$having} {$order} {$limit}").";";
+            $query = $this->query($sql, $prepare);
+            if($query === false || $query->rowCount() === 0){
+                return false;
+            }
             return $this->fetch($query, $fetch);
         }
 
@@ -510,25 +510,25 @@
             $table = $this->prefix($table);
 
             // Check Clauses
-			if(!is_string($dist)){
-				return false;
-			}
-			if(($where = $this->where($where, $prepare)) === false){
-				return false;
-			}
-			if(($order = $this->order($order)) === false){
-				return false;
-			}
-			if(($limit = $this->limit($limit)) === false){
-				return false;
-			}
+            if(!is_string($dist)){
+                return false;
+            }
+            if(($where = $this->where($where, $prepare)) === false){
+                return false;
+            }
+            if(($order = $this->order($order)) === false){
+                return false;
+            }
+            if(($limit = $this->limit($limit)) === false){
+                return false;
+            }
 
-			// Create SQL and Return
-			$sql = rtrim("SELECT {$dist} FROM {$table} {$where} {$order} {$limit}").";";
-			$query = $this->query($sql, $prepare);
-			if($query === false || $query->rowCount() === 0){
-				return false;
-			}
+            // Create SQL and Return
+            $sql = rtrim("SELECT {$dist} FROM {$table} {$where} {$order} {$limit}").";";
+            $query = $this->query($sql, $prepare);
+            if($query === false || $query->rowCount() === 0){
+                return false;
+            }
             return $this->fetch($query, $fetch);
         }
 
@@ -548,11 +548,11 @@
          |  @param  multi   The PDOStatement object, an array with the results or FALSE.
          */
         public function single($table, $dist = "*", $where = NULL, $offset = NULL, $prepare = array(), $fetch = NULL){
-			$query = $this->select($table, $dist, $where, NULL, array(1, $offset), $prepare, $fetch);
-			if(is_array($query) && count($query) > 0){
-				return $query[0];
-			}
-			return false;
+            $query = $this->select($table, $dist, $where, NULL, array(1, $offset), $prepare, $fetch);
+            if(is_array($query) && count($query) > 0){
+                return $query[0];
+            }
+            return false;
         }
 
         /*
@@ -587,21 +587,21 @@
                 return false;
             }
 
-			// Create SQL
-			$query = array();
-			foreach($data AS $key => $value){
-				$query[$key] = $this->data($value, $prepare);
-			}
-			$sql  = "INSERT INTO {$table} ";
-			$sql .= "(`".implode("`, `", array_keys($query))."`) VALUES ";
-			$sql .= "(".implode(", ", array_values($query)).");";
+            // Create SQL
+            $query = array();
+            foreach($data AS $key => $value){
+                $query[$key] = $this->data($value, $prepare);
+            }
+            $sql  = "INSERT INTO {$table} ";
+            $sql .= "(`".implode("`, `", array_keys($query))."`) VALUES ";
+            $sql .= "(".implode(", ", array_values($query)).");";
 
-			// Return
-			$result = $this->query($sql, $prepare);
-			if($result !== false){
-				return $this->lastID;
-			}
-			return false;
+            // Return
+            $result = $this->query($sql, $prepare);
+            if($result !== false){
+                return $this->lastID;
+            }
+            return false;
         }
 
         /*
@@ -626,20 +626,19 @@
                 return false;
             }
 
-			// Create SQL
-			$query = array();
-			foreach($data AS $key => $value){
-				$query[] = "`{$key}`=".$this->data($value, $prepare);
-			}
-			$sql  = "UPDATE {$table} SET ".implode(", ", $query)." {$where};";
+            // Create SQL
+            $query = array();
+            foreach($data AS $key => $value){
+                $query[] = "`{$key}`=".$this->data($value, $prepare);
+            }
+            $sql  = "UPDATE {$table} SET ".implode(", ", $query)." {$where};";
 
-			// Return
-			$result = $this->query($sql, $prepare);
-			if($result !== false){
-				return $this->lastRows;
-			}
-			return false;
-
+            // Return
+            $result = $this->query($sql, $prepare);
+            if($result !== false){
+                return $this->lastRows;
+            }
+            return false;
         }
 
         /*
@@ -660,9 +659,9 @@
                 return false;
             }
 
-			// Create SQL and Return
-			$result = $this->query("DELETE FROM {$table} {$where};", $prepare);
-			return $this->lastRows > 0;
+            // Create SQL and Return
+            $result = $this->query("DELETE FROM {$table} {$where};", $prepare);
+            return $this->lastRows > 0;
         }
 
         /*

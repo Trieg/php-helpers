@@ -13,15 +13,15 @@
  |              https://github.com/DPr00f/steam-web-api-php
  */
 
-	namespace PIT\Steam;
-	
-	use PIT\Steam\Model\Achievement as Achievement;
-	use PIT\Steam\Model\App as App;
-	use PIT\Steam\Model\Game as Game;
-	use PIT\Steam\Model\News as News;
-	use PIT\Steam\Model\Player as Player;
-	use PIT\Steam\Model\PlayerBans as PlayerBans;
-	
+    namespace PIT\Steam;
+    
+    use PIT\Steam\Model\Achievement as Achievement;
+    use PIT\Steam\Model\App as App;
+    use PIT\Steam\Model\Game as Game;
+    use PIT\Steam\Model\News as News;
+    use PIT\Steam\Model\Player as Player;
+    use PIT\Steam\Model\PlayerBans as PlayerBans;
+    
     class Steam{
         const API = "://api.steampowered.com/";
         const STORE = "://store.steampowered.com/";
@@ -87,13 +87,13 @@
             ), $parameters));
             
             // CURL
-			$curl = curl_init();
-			curl_setopt($curl, CURLOPT_HEADER, false);
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($curl, CURLOPT_URL, $this->buildURL($parameters));
-			$content = curl_exec($curl);
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_URL, $this->buildURL($parameters));
+            $content = curl_exec($curl);
             $response = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-			curl_close($curl);
+            curl_close($curl);
             
             // Last Data
             $this->lastResponse     = $content;
