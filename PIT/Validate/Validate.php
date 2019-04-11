@@ -1,7 +1,7 @@
 <?php
 /*
  |  Validate    A small Validation handler
- |  @file       ./PIT/Gravatar.php
+ |  @file       ./PIT/Validate/Validate.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.2.0
  |
@@ -13,7 +13,7 @@
  |              Copyright © 2008 - 2009 Philippe Archambault <philippe.archambault@gmail.com>
  */
 
-    namespace PIT;
+    namespace PIT\Validate;
  
     class Validate{
         /*

@@ -3,12 +3,12 @@ PIT PHP Helpers
 My Collection of (useful) PHP helper classes, the most of them are coded completely on my own and 
 licensed under the MIT license (except the `Neocities` API interface, which is published under 
 Public Domin / CC0). The `Gravatar`, `Kses`, `Steam` and `Validate` classes are contributions or 
-forks I made, and with the exception of the `Steam` class, all are released under the GNU GPL v3 
+forks I made, and with the exception of the `Steam` class, all are released under the GNU GPL 
 license.
 
 --------
 
-`PIT\eMail` - A small eMail Handler
+`PIT\eMail` - A basic eMail Handler
 -----------------------------------
 >   Written in 2018<br>
 >   Published under the MIT License
@@ -19,7 +19,7 @@ other functionalities in future releases.
 
 --------
 
-`PIT\Gettext` - A small `PIT\GettextReader` Interface
+`PIT\Gettext` - A basic `PIT\GettextReader` Interface
 -----------------------------------------------------
 >   Written in 2013<br>
 >   Published under the MIT License
@@ -39,7 +39,7 @@ My really first own helper class was "another" Gettext Interface. This class get
 
 --------
 
-`PIT\Gravatar` - A small Gravatar API Handler
+`PIT\Gravatar` - A basic Gravatar API handler
 ---------------------------------------------
 >   Written in 2008<br>
 >   Published under the GNU GPL v3<br>
@@ -54,7 +54,7 @@ by me for my "Fox CMS" (a fork of the Wolf CMS).
 `PIT\Kses` - Custom version of KSES Strips Evil Scripts
 -------------------------------------------------------
 >   Written in 2002<br>
->   Published under the GNU GPL v3<br>
+>   Published under the GNU GPL v2<br>
 >   Authors: Ulf Harnhammar, SamBrishes
 
 The Kses system is a famous (X) HTML validator / sanitizer, which has also been forked by WordPress. 
@@ -62,7 +62,7 @@ This is my, little improved, version of the really awesome Kses helper system.
 
 --------
 
-`PIT\MySQLi` - A MYSQLi wrapper class
+`PIT\MySQLi` - A basic MYSQLi wrapper
 -------------------------------------
 >   Written in 2016<br>
 >   Published under the MIT License
@@ -72,7 +72,7 @@ system. Perfect to start an own MySQLi-based (content mangement) system.
 
 --------
 
-`PIT\Neocities` - A small Neocities API Handler
+`PIT\Neocities` - A basic Neocities API handler
 -----------------------------------------------
 >   Written in 2018<br>
 >   Published under CC0 / Public Domain
@@ -81,7 +81,7 @@ The Neocities API interface handles ... well ... the API interface of Neocities.
 
 --------
 
-`PIT\PDO` - A PDO wrapper class
+`PIT\PDO` - A basic PDO wrapper
 -------------------------------
 >   Written in 2016<br>
 >   Published under the MIT License
@@ -91,7 +91,7 @@ system. Perfect to start an own PDO-based (content mangement) system.
 
 --------
 
-`PIT\Steam` - A small Steam API Handler
+`PIT\Steam` - A basic Steam API handler
 ---------------------------------------
 >   Written in 2018<br>
 >   Published under the MIT License
@@ -101,7 +101,7 @@ helper by Joao Lopes.
 
 --------
 
-`PIT\Validate` - A small Validation helper
+`PIT\Validate` - A basic Validation helper
 ------------------------------------------
 >   Written in 2008<br>
 >   Published under the GNU GPL v3<br>
@@ -113,8 +113,8 @@ by me for my "Fox CMS" (a fork of the Wolf CMS).
 
 --------
 
-`PIT\ZIP` - A small vanilla PKZip and ZipArchive Handler
---------------------------------------------------------
+`PIT\ZIP` - A basic PKZIP helper / ZipArchive wrapper
+-----------------------------------------------------
 >   Written in 2015<br>
 >   Published under the MIT License
 

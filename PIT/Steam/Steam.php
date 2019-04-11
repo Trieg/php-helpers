@@ -1,7 +1,7 @@
 <?php
 /*
  |  Steam       A basic implementation
- |  @file       ./PIT/Steam/Gettext.php
+ |  @file       ./PIT/Steam/Steam.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.1.0
  |

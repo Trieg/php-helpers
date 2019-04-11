@@ -1,12 +1,12 @@
 <?php
 /*
  |  KSES        The 'KSES Strips Evil Scripts' (X)HTML Filter
- |  @file       ./PIT/Kses.php
+ |  @file       ./PIT/Kses/Kses.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.3.0
  |
  |  @website    https://github.com/pytesNET/php-helpers
- |  @license    GNU GPL v3
+ |  @license    GNU GPL v2
  |  @copyright  Copyright © 2017 - 2019 SamBrishes, pytesNET <pytes@gmx.net>
  |
  |  @history    Copyright © 2002 - 2017 Ulf Harnhammar [https://sourceforge.net/projects/kses]
@@ -18,7 +18,7 @@
  |  -   https://core.trac.wordpress.org/browser/tags/4.9.5/src/wp-includes/kses.php
  */
 
-    namespace PIT;
+    namespace PIT\Kses;
 
     class Kses{
         const VERSION = "0.3.0";

@@ -1,7 +1,7 @@
 <?php
 /*
  |  Neocities   A basic implementation of the Neocities API in PHP.
- |  @file       ./PIT/Neocities.php
+ |  @file       ./PIT/Neocities/Neocities.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.1.0
  |
@@ -10,7 +10,7 @@
  |  @copyright  Copyright © 2018 SamBrishes, pytesNET <pytes@gmx.net>
  */
 
-    namespace PIT;
+    namespace PIT\Neocities;
 
     class Neocities{
         /*

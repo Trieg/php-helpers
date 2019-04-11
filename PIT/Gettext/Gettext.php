@@ -1,7 +1,7 @@
 <?php
 /*
  |  Gettext     A small interface for GettextReader
- |  @file       ./PIT/Gettext.php
+ |  @file       ./PIT/Gettext/Gettext.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    1.1.0
  |
@@ -10,9 +10,9 @@
  |  @copyright  Copyright © 2013 - 2019 SamBrishes, pytesNET <pytes@gmx.net>
  */
 
-    namespace PIT;
+    namespace PIT\Gettext;
 
-    use PIT\GettextReader as GettextReader;
+    use PIT\Gettext\GettextReader as GettextReader;
 
     class Gettext{
         /*

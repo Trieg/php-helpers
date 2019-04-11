@@ -1,7 +1,7 @@
 <?php
 /*
  |  ZIP         A ZipArchive and vanilla PKZIP PHP Helper
- |  @file       ./PIT/ZIP.php
+ |  @file       ./PIT/ZIP/ZIP.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.2.1
  |
@@ -18,7 +18,7 @@
  |  -   https://php.net/manual/class.ziparchive.php
  */
 
-    namespace PIT;
+    namespace PIT\ZIP;
 
     class ZIP{
         const FLAGS = "\x00\x00";
@@ -411,7 +411,7 @@
          |  @update 0.2.1
          */
         public function file(){
-            $comment = "PKZipped with https://github.com/SamBrishes/FoxCMS/tree/helpers/zip";
+            $comment = "PKZipped with PIZ\ZIP @ https://github.com/pytesNET/php-helpers";
 
             // ZipArchive
             if($this->zipArchive){

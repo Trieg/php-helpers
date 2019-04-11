@@ -1,7 +1,7 @@
 <?php
 /*
  |  PDO         A PDO wrapper class with some neat / cool methods.
- |  @file       ./PIT/PDO.php
+ |  @file       ./PIT/PDO/PDO.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.1.0
  |
@@ -10,7 +10,7 @@
  |  @copyright  Copyright © 2016 - 2019 SamBrishes, pytesNET <pytes@gmx.net>
  */
 
-    namespace PIT;
+    namespace PIT\PDO;
 
     class PDO{
         /*

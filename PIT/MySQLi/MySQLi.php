@@ -1,7 +1,7 @@
 <?php
 /*
  |  MySQLi      A MySQLi wrapper class with some neat / cool methods.
- |  @file       ./PIT/MySQLi.php
+ |  @file       ./PIT/MySQLi/MySQLi.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.1.0
  |
@@ -10,7 +10,7 @@
  |  @copyright  Copyright © 2016 - 2019 SamBrishes, pytesNET <pytes@gmx.net>
  */
     
-    namespace PIT;
+    namespace PIT\MySQLi;
 
     class MySQLi{
         const FETCH_ALL = "fetch_all";

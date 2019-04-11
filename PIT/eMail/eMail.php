@@ -1,7 +1,7 @@
 <?php
 /*
  |  eMail       A really basic eMail helper function.
- |  @file       ./PIT/eMail.php
+ |  @file       ./PIT/eMail/eMail.php
  |  @author     SamBrishes <sam@pytes.net>
  |  @version    0.1.0
  |
@@ -10,7 +10,7 @@
  |  @copyright  Copyright © 2018 - 2019 SamBrishes, pytesNET <info@pytes.net>
  */
 
-    namespace PIT;
+    namespace PIT\eMail;
 
     class eMail{
         /*
